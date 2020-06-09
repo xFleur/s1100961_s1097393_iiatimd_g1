@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">IIATIMD_project_1920</string>
     <string name="hello">Hello Mark!</string>
+    <string name="welkom">Je bent ingelogd!</string>
+    <string name="logincheck">Je bent ingelogd!</string>
+    <string name="login">Login</string>
+    <string name="naam">Name</string>
+    <string name="pwd">Password</string>
+    <string name="check">No of incorrect attempts: </string>
+
+    <string name="login_go">Ga naar Loginscherm</string>
 </resources>
