@@ -1,7 +1,8 @@
 package com.example.iiatimd_project_1920;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Intent;
+import android.view.View;
 
 import android.os.Bundle;
 
@@ -14,4 +15,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, QuizActivity.class);
+        startActivity(intent);
+    }
+
 }
