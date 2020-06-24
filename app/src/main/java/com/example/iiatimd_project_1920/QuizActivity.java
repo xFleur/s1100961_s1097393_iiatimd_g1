@@ -271,6 +271,9 @@ public class QuizActivity extends AppCompatActivity {
                     score += 10; //score toevoegen
                     textViewScore.setText("Score: " + String.valueOf(score));
 
+                    correctDialog.CorrectDialog(score, this);
+
+
 
                 } else {
                     changetoIncorrectColor(rbselected);
@@ -280,8 +283,6 @@ public class QuizActivity extends AppCompatActivity {
 
                     final String correctAnswer = (String)rb1.getText();
                     wrongDialog.WrongDialog(correctAnswer, this);
-
-                    correctDialog.CorrectDialog(score, this);
 
                 }
                 break;
