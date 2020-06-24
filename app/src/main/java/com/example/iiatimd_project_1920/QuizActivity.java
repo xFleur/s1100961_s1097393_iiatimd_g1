@@ -1,11 +1,13 @@
 package com.example.iiatimd_project_1920;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -61,7 +63,6 @@ public class QuizActivity extends AppCompatActivity {
     private static final long COUNTDOWN_IN_MILLIS = 30000;
     private CountDownTimer countDownTimer;
     private long timeLeftinMillis;
-
     private long backPressedTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +120,7 @@ public class QuizActivity extends AppCompatActivity {
                 *
                 * */
 
-    private void setQuestionView() {
+    public void setQuestionView() {
 
         rbGroup.clearCheck();
 
@@ -159,13 +160,10 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
 
-
-            totalSizeofQuiz = quesList.size();
-
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    finalScoreDialog.finalScoreDialog(correctAns, wrongAns, totalSizeofQuiz);
+                    resultData();
                 }
             }, 2000);
 
@@ -269,13 +267,6 @@ public class QuizActivity extends AppCompatActivity {
                     score += 10; //score toevoegen
                     textViewScore.setText("Score: " + String.valueOf(score));
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setQuestionView();
-                        }
-                    },1000);
-
 
                 } else {
                     changetoIncorrectColor(rbselected);
@@ -284,16 +275,9 @@ public class QuizActivity extends AppCompatActivity {
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
                     final String correctAnswer = (String)rb1.getText();
-                    wrongDialog.WrongDialog(correctAnswer);
+                    wrongDialog.WrongDialog(correctAnswer, this);
 
-                    correctDialog.CorrectDialog(score);
-
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setQuestionView();
-                        }
-                    },1000);
+                    correctDialog.CorrectDialog(score, this);
 
                 }
                 break;
@@ -308,14 +292,7 @@ public class QuizActivity extends AppCompatActivity {
                     score += 10; //score toevoegen
                     textViewScore.setText("Score: " + String.valueOf(score));
 
-                    correctDialog.CorrectDialog(score);
-
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setQuestionView();
-                        }
-                    },1000);
+                    correctDialog.CorrectDialog(score, this);
 
 
                 } else {
@@ -323,14 +300,8 @@ public class QuizActivity extends AppCompatActivity {
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
                     final String correctAnswer = (String)rb2.getText();
-                    wrongDialog.WrongDialog(correctAnswer);
+                    wrongDialog.WrongDialog(correctAnswer, this);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setQuestionView();
-                        }
-                    },1000);
 
                 }
                 break;
@@ -345,14 +316,7 @@ public class QuizActivity extends AppCompatActivity {
                     score += 10; //score toevoegen
                     textViewScore.setText("Score: " + String.valueOf(score));
 
-                    correctDialog.CorrectDialog(score);
-
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setQuestionView();
-                        }
-                    },1000);
+                    correctDialog.CorrectDialog(score, this);
 
 
                 } else {
@@ -360,14 +324,7 @@ public class QuizActivity extends AppCompatActivity {
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
                     final String correctAnswer = (String)rb3.getText();
-                    wrongDialog.WrongDialog(correctAnswer);
-
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setQuestionView();
-                        }
-                    },1000);
+                    wrongDialog.WrongDialog(correctAnswer, this);
 
                 }
                 break;
@@ -382,14 +339,8 @@ public class QuizActivity extends AppCompatActivity {
                     score += 10; //score toevoegen
                     textViewScore.setText("Score: " + String.valueOf(score));
 
-                    correctDialog.CorrectDialog(score);
+                    correctDialog.CorrectDialog(score, this);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setQuestionView();
-                        }
-                    },1000);
 
 
                 } else {
@@ -397,14 +348,7 @@ public class QuizActivity extends AppCompatActivity {
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
                     final String correctAnswer = (String)rb4.getText();
-                    wrongDialog.WrongDialog(correctAnswer);
-
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setQuestionView();
-                        }
-                    },1000);
+                    wrongDialog.WrongDialog(correctAnswer, this);
 
                 }
                 break;
@@ -466,14 +410,31 @@ public class QuizActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("DATATA", "onStop() in QuizActivity");
+        finish();
+    }
+
+    private void resultData(){
+        Intent resultOfQuiz = new Intent(QuizActivity.this, ResultActivity.class);
+        resultOfQuiz.putExtra("UserScore", score);
+        resultOfQuiz.putExtra("TotalQuizQuestions", questionTotalCount -1);
+        resultOfQuiz.putExtra("CorrectQuestions", correctAns);
+        resultOfQuiz.putExtra("WrongQuestions", wrongAns);
+        startActivity(resultOfQuiz);
+    }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
 
-        if(countDownTimer != null){
-            countDownTimer.cancel();
+            Intent intent = new Intent(QuizActivity.this, PlayActivity.class);
+        }else{
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
         }
+        backPressedTime = System.currentTimeMillis();
     }
-    
+
 }
