@@ -1,13 +1,11 @@
 package com.example.iiatimd_project_1920;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -54,7 +52,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private int score = 0;
 
-    private FinalScoreDialog finalScoreDialog;
+    private TimerDialog timerDialog;
     private WrongDialog wrongDialog;
     private CorrectDialog correctDialog;
 
@@ -74,7 +72,7 @@ public class QuizActivity extends AppCompatActivity {
 
         textColorofButtons = rb1.getTextColors();  // this is used to change the text colors of the buttons
 
-        finalScoreDialog = new FinalScoreDialog(this);
+        timerDialog = new TimerDialog(this);
         wrongDialog = new WrongDialog(this);
         correctDialog = new CorrectDialog(this);
 
@@ -159,6 +157,12 @@ public class QuizActivity extends AppCompatActivity {
 
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
+
+            rb1.setClickable(false);
+            rb2.setClickable(false);
+            rb3.setClickable(false);
+            rb4.setClickable(false);
+            buttonNext.setClickable(false);
 
             handler.postDelayed(new Runnable() {
                 @Override
@@ -401,9 +405,7 @@ public class QuizActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
-                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
-                    startActivity(intent);
+                    timerDialog.timerDialog();
                 }
             }, 2000);
 
