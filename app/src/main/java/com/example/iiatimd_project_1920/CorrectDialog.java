@@ -14,11 +14,15 @@ public class CorrectDialog {
     private Context mContext;
     private Dialog correctDialog;
 
+    private QuizActivity mquizActivity;
+
     public CorrectDialog(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void CorrectDialog(int score){
+    public void CorrectDialog(int score, QuizActivity quizActivity){
+
+        mquizActivity = quizActivity;
 
         correctDialog = new Dialog(mContext);
 
@@ -32,6 +36,7 @@ public class CorrectDialog {
             @Override
             public void onClick(View v) {
                 correctDialog.dismiss();
+                mquizActivity.setQuestionView();
             }
         });
 
