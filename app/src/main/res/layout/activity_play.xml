@@ -1,41 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    tools:context=".PlayActivity">
-    <LinearLayout
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="40dp"
-        android:background="#EA0101">
+        android:layout_width="match_parent">
 
-        <TextView
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Quiz App"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="40dp"
-            android:textColor="#000"
-            android:layout_marginTop="40dp"
-            android:textAlignment="center"/>
+            android:layout_height="match_parent"
+            app:toolbarId="@+id/toolbar"
 
-        <Button
-            android:id="@+id/bt_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textSize="40sp"
-            android:background="@drawable/confirm_button_bg"
-            android:padding="30dp"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+            app:contentScrim="?attr/colorPrimary">
 
-</LinearLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"></androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/bg_Color"
+            tools:context=".PlayActivity">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="20dp">
+                <TextView
+                    android:id="@+id/home_Welcome"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Goedemorgen"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_Color"
+
+                    />
+                <TextView
+                    android:id="@+id/home_Goal"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="To-do:"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_Color"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_play"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Start Quiz"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textSize="25sp"
+                        android:layout_margin="10dp"
+                        app:icon="@drawable/ic_car_48"
+                        app:iconGravity="textStart"
+                        app:iconPadding="10dp"
+                        app:iconTint="@color/text_Color_White"
+                        android:textColor="@color/text_Color_White"
+                        android:background="@drawable/confirm_button_bg"
+                        android:padding="30dp"
+                        android:layout_gravity="center" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Progress"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textSize="25sp"
+                        android:layout_margin="10dp"
+                        app:icon="@drawable/ic_progress_24"
+                        app:iconGravity="textStart"
+                        app:iconPadding="10dp"
+                        app:iconTint="@color/text_Color_White"
+
+                        android:textColor="@color/text_Color_White"
+                        android:background="@drawable/confirm_button_bg"
+                        android:padding="30dp"
+                        android:layout_gravity="center" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="center"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/bt_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Profile"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/text_Color_White"
+                        app:backgroundTint="@color/colorPrimary"
+                        app:icon="@drawable/ic_baseline_person_24"
+                        app:iconGravity="textStart"
+                        app:iconPadding="10dp"
+                        app:iconTint="@color/text_Color_White"
+                        android:padding="20dp"
+                        android:layout_gravity="center" />
+
+                    <Button
+                        android:id="@+id/bt_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Logout"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:layout_margin="10dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_Color_White"
+                        app:icon="@drawable/ic_logout"
+                        app:iconGravity="textStart"
+                        app:iconPadding="10dp"
+                        app:iconTint="@color/text_Color_White"
+                        android:background="@drawable/confirm_button_bg"
+                        android:padding="20dp"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+                </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

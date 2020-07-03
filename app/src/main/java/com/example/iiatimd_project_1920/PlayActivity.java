@@ -9,9 +9,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class PlayActivity extends AppCompatActivity {
+
+    private String firstName = "Mark";
+
+    private static final String TAG = "PlayActivity";
 
     private long backPressedTime;
 
@@ -21,16 +28,31 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
+        TextView tv_name = findViewById(R.id.home_Welcome);
+        tv_name.setText("Welkom, " + firstName);
+
+        Bundle bundle = getIntent().getExtras();
+
+        if(bundle != null){
+            TextView tv = findViewById(R.id.home_Goal);
+            tv.setText("To-do: " + bundle.get("leerdoel").toString());
+        } else{
+            TextView tv = findViewById(R.id.home_Goal);
+            tv.setText("To-do: geen to-do");
+        }
+
         Button buttonPlay = findViewById(R.id.bt_play);
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PlayActivity.this, QuizActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -58,4 +80,6 @@ public class PlayActivity extends AppCompatActivity {
         Log.i("DATATA", "onStop() in QuizActivity");
         finish();
     }
+
+
 }

@@ -127,10 +127,10 @@ public class QuizActivity extends AppCompatActivity {
         rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
         rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
 
-        rb1.setTextColor(Color.BLACK);
-        rb2.setTextColor(Color.BLACK);
-        rb3.setTextColor(Color.BLACK);
-        rb4.setTextColor(Color.BLACK);
+        rb1.setTextColor(Color.WHITE);
+        rb2.setTextColor(Color.WHITE);
+        rb3.setTextColor(Color.WHITE);
+        rb4.setTextColor(Color.WHITE);
 
         questionTotalCount = quesList.size();
         Collections.shuffle(quesList);
@@ -434,6 +434,7 @@ public class QuizActivity extends AppCompatActivity {
         if(backPressedTime + 2000 > System.currentTimeMillis()){
 
             Intent intent = new Intent(QuizActivity.this, PlayActivity.class);
+            startActivity(intent);
         }else{
             Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
         }

@@ -10,7 +10,7 @@
                 android:orientation="vertical"
                 android:paddingBottom="20dp"
                 android:paddingTop="20dp"
-                android:background="#FF0000">
+                android:background="@color/colorWrong">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
                     android:textStyle="bold"
                     android:textSize="30sp"
                     android:layout_gravity="center"
-                    android:textColor="#fff"
+                    android:textColor="@color/text_Color_Quiz"
                     />
 
 
@@ -29,7 +29,7 @@
         android:id="@+id/textView_wrong_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Final Score: "
+        android:text="@string/score_Total"
         android:singleLine="true"
         android:ellipsize="end"
         android:paddingLeft="2dp"
@@ -40,7 +40,7 @@
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_gravity="center"
-        android:textColor="#000000"
+        android:textColor="@color/text_Color"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         />
@@ -51,6 +51,8 @@
         android:layout_gravity="center"
         android:text="OK"
         android:textStyle="bold"
+        android:background="@color/colorWrong"
+        android:textColor="@color/text_Color_Quiz"
 
         android:textSize="30sp"/>
 

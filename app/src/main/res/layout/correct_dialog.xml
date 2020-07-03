@@ -10,7 +10,7 @@
                 android:orientation="vertical"
                 android:paddingBottom="20dp"
                 android:paddingTop="20dp"
-                android:background="#62FF00">
+                android:background="@color/colorCorrect">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:id="@+id/textView_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Final Score: "
+        android:text="@string/score_Total"
         android:paddingLeft="2dp"
         android:paddingRight="2dp"
         android:paddingBottom="10dp"
@@ -50,7 +50,7 @@
         android:text="OK"
         android:textStyle="bold"
         android:textColor="#FFF"
-        android:background="#62FF00"
+        android:background="@color/colorCorrect"
         android:textSize="30sp"/>
 
 
