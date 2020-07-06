@@ -1,10 +1,7 @@
 package com.example.iiatimd_project_1920;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.backup.SharedPreferencesBackupHelper;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +12,6 @@ import android.widget.Toast;
 
 public class ResultActivity extends AppCompatActivity {
 
-
     TextView txtHighScore;
     TextView txtTotalQuizQuestion, txtCorrectQuestion, txtWrongQuestion;
     Button btStartQuizAgain, btMainMenu;
@@ -23,6 +19,7 @@ public class ResultActivity extends AppCompatActivity {
 
     int highScore = 0;
 
+    //Shared preferences waar de highscore in opgeslagen is.
     private static final String SHARED_PREFERENCE = "shared_preferences";
     private static final String SHARED_PREFERENCE_HIGHSCORE = "shared_preferences_high_score";
 
@@ -31,18 +28,20 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        //Instellen textview
         txtHighScore = findViewById(R.id.result_tv_HighScore);
         txtCorrectQuestion = findViewById(R.id.result_tv_correct_Ques);
         txtWrongQuestion = findViewById(R.id.result_tv_wrong_Ques);
         txtTotalQuizQuestion = findViewById(R.id.result_tv_Num_of_Ques);
 
+        //Instellen buttons
         btStartQuizAgain = findViewById(R.id.bt_result_play_again);
         btMainMenu = findViewById(R.id.bt_result_main_menu);
 
         btMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResultActivity.this, PlayActivity.class);
+                Intent intent = new Intent(ResultActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -55,8 +54,10 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
 
+        //Highscore ophalen
         loadHighScore();
 
+        //Ophalen van data vanuit QuizActivity
         Intent intent = getIntent();
         int score = intent.getIntExtra("UserScore", 0);
         int totalQuestion = intent.getIntExtra("TotalQuizQuestions", 0);
@@ -67,12 +68,13 @@ public class ResultActivity extends AppCompatActivity {
         txtCorrectQuestion.setText("Correct Questions: " + String.valueOf(correctQuestions));
         txtWrongQuestion.setText("Wrong Questions: " + String.valueOf(wrongQuestions));
 
-
+        //Is score hoger dan highScore? Update dan de nieuwe score
         if (score > highScore){
             updateScore(score);
         }
     }
 
+    //Score updaten
     private void updateScore(int score) {
         highScore = score;
 
@@ -84,6 +86,7 @@ public class ResultActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    //Highscore vanuit SharedPreferences laden
     private void loadHighScore() {
 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCE, MODE_PRIVATE);
@@ -92,6 +95,8 @@ public class ResultActivity extends AppCompatActivity {
         txtHighScore.setText("High Score: " + String.valueOf(highScore));
 
     }
+
+    //onBackPressed afhandeling
     @Override
     public void onBackPressed() {
         if(backPressedTime + 2000 > System.currentTimeMillis()){

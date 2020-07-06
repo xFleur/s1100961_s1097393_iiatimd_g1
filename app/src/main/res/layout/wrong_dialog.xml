@@ -20,7 +20,7 @@
                     android:textStyle="bold"
                     android:textSize="30sp"
                     android:layout_gravity="center"
-                    android:textColor="@color/text_Color_Quiz"
+                    android:textColor="@color/text_Color_White"
                     />
 
 
@@ -52,7 +52,7 @@
         android:text="OK"
         android:textStyle="bold"
         android:background="@color/colorWrong"
-        android:textColor="@color/text_Color_Quiz"
+        android:textColor="@color/text_Color_White"
 
         android:textSize="30sp"/>
 

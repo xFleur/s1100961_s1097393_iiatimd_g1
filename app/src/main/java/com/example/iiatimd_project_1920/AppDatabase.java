@@ -50,7 +50,7 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids){
 
-            //Alle vragen van de applicatie
+            //Alle vragen van de applicatie met daarbij aangegeven wat het goede antwoord is.
             questionDao.insert(new Questions("What is Android?","OS","Browser","Software","Hard Drive",1));
             questionDao.insert(new Questions("RAM Stands for what ?","Operating System","Browser","Random Access Memory","CD Project",3));
             questionDao.insert(new Questions("Chrome is what ?","System Software","Browser","Middle Ware","Windows",2));

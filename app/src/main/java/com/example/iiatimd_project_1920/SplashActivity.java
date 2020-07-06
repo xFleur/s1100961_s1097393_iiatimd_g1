@@ -71,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void GoToPlayActivity() {
-        startActivityForResult(new Intent(SplashActivity.this, PlayActivity.class), EXIT_CODE);
+        startActivityForResult(new Intent(SplashActivity.this, MainActivity.class), EXIT_CODE);
     }
 
     @Override

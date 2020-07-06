@@ -7,9 +7,12 @@ import androidx.room.Query;
 
 import java.util.List;
 
+
+//Dao voor de Room database
 @Dao
 public interface SignDAO{
 
+    //Alle vragen ophalen vanuit Questions
     @Query("SELECT * FROM questions_table")
     LiveData<List<Questions>> getAllQuestions();
 

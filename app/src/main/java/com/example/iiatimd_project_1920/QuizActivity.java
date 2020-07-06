@@ -26,7 +26,6 @@ import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
-
     TextView txtQuestion;
     TextView textViewScore, textViewQuestionCount, textViewCountDownTimer;
     TextView textViewCorrect, textViewWrong;
@@ -35,21 +34,17 @@ public class QuizActivity extends AppCompatActivity {
     RadioGroup rbGroup;
     Button buttonNext;
 
-    boolean answerd = false;
-
     List<Questions> quesList;
     Questions currentQ;
 
-    private int questionCounter=0, questionTotalCount;
+    boolean answerd = false;
 
     private QuestionViewModel questionViewModel;
-
     private ColorStateList textColorofButtons;
-
     private Handler handler = new Handler();
 
+    private int questionCounter=0, questionTotalCount;
     private int correctAns = 0, wrongAns = 0;
-
     private int score = 0;
 
     private TimerDialog timerDialog;
@@ -62,15 +57,18 @@ public class QuizActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private long timeLeftinMillis;
     private long backPressedTime;
+
+    //onCreate functie die alles aanroept en instelt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-
+        //Het instellen van de user interface voor interactie
         setupUI();
 
-        textColorofButtons = rb1.getTextColors();  // this is used to change the text colors of the buttons
+        //Om de kleur van de knop te veranderen als deze geselecteerd is
+        textColorofButtons = rb1.getTextColors();
 
         timerDialog = new TimerDialog(this);
         wrongDialog = new WrongDialog(this);
@@ -90,6 +88,7 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    //De UI instellen voor de verschillende inputs.
     void setupUI() {
         textViewScore = findViewById(R.id.txtScore);
         textViewCountDownTimer = findViewById(R.id.txtTimer);
@@ -114,7 +113,11 @@ public class QuizActivity extends AppCompatActivity {
 
                 /*
                 *
-                *   SetQuestionView metho
+                *   SetQuestionView methode die aangesproken bij een nieuwe vraag.
+                *   Reset de UI indien er een nieuwe vraag is.
+                *   Anders dan zal de methode zichzelf niet meer resetten en de Quiz stoppen.
+                *   Deze methode zet alle vragen op 0 en kiest een vraag uit vanuit de Room database
+                *
                 *
                 * */
 
@@ -135,6 +138,7 @@ public class QuizActivity extends AppCompatActivity {
         questionTotalCount = quesList.size();
         Collections.shuffle(quesList);
 
+        // UI resetten als er een nieuwe quizvraag is.
         if (questionCounter < questionTotalCount - 1) {
 
             currentQ = quesList.get(questionCounter);
@@ -145,47 +149,41 @@ public class QuizActivity extends AppCompatActivity {
             rb3.setText(currentQ.getOptC());
             rb4.setText(currentQ.getOptD());
 
-
             questionCounter++;
             answerd = false;
             buttonNext.setText("Confirm");
             textViewQuestionCount.setText("Questions : " + questionCounter + "/" + (questionTotalCount - 1));
 
             timeLeftinMillis = COUNTDOWN_IN_MILLIS;
-
             startCountdown();
 
+        // Aanroepen als quiz afgelopen is
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
 
+            //Zorgen dat de knoppen niet meer aanklikbaar zijn
             rb1.setClickable(false);
             rb2.setClickable(false);
             rb3.setClickable(false);
             rb4.setClickable(false);
             buttonNext.setClickable(false);
-
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     resultData();
                 }
             }, 2000);
-
         }
-
-
     }
-
-
 
     private void startQuiz() {
 
         setQuestionView();
 
+        //Layout van knop veranderen als deze aangeklikt is.
         rbGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-
                 switch (checkedId){
                     case R.id.radio_button1:
                         rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_selected));
@@ -206,56 +204,39 @@ public class QuizActivity extends AppCompatActivity {
                         rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
                         rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_selected));
                         rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
-
                         break;
+
                     case R.id.radio_button4:
                         rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
                         rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
                         rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
                         rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_selected));
-
                         break;
                 }
-
             }
         });
 
+        // Vraagvalidatie
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (!answerd) {
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()) {
                         quizOperation();
-
-
                     } else {
                         Toast.makeText(QuizActivity.this, "Please Select Answer", Toast.LENGTH_SHORT).show();
                     }
                 }
-
-
             }
         });
-
     }
 
-
-
     private void quizOperation() {
-
-
         answerd = true;
-
         countDownTimer.cancel();
-
         RadioButton rbselected = findViewById(rbGroup.getCheckedRadioButtonId());
-
         int answerNr = rbGroup.indexOfChild(rbselected) + 1;
-
         checkSolution(answerNr, rbselected);
-
     }
 
     private void checkSolution(int answerNr, RadioButton rbselected) {
@@ -273,8 +254,6 @@ public class QuizActivity extends AppCompatActivity {
 
                     correctDialog.CorrectDialog(score, this);
 
-
-
                 } else {
                     changetoIncorrectColor(rbselected);
 
@@ -283,7 +262,6 @@ public class QuizActivity extends AppCompatActivity {
 
                     final String correctAnswer = (String)rb1.getText();
                     wrongDialog.WrongDialog(correctAnswer, this);
-
                 }
                 break;
             case 2:
@@ -298,16 +276,12 @@ public class QuizActivity extends AppCompatActivity {
                     textViewScore.setText("Score: " + String.valueOf(score));
 
                     correctDialog.CorrectDialog(score, this);
-
-
                 } else {
                     changetoIncorrectColor(rbselected);
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
                     final String correctAnswer = (String)rb2.getText();
                     wrongDialog.WrongDialog(correctAnswer, this);
-
-
                 }
                 break;
             case 3:
@@ -322,15 +296,12 @@ public class QuizActivity extends AppCompatActivity {
                     textViewScore.setText("Score: " + String.valueOf(score));
 
                     correctDialog.CorrectDialog(score, this);
-
-
                 } else {
                     changetoIncorrectColor(rbselected);
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
                     final String correctAnswer = (String)rb3.getText();
                     wrongDialog.WrongDialog(correctAnswer, this);
-
                 }
                 break;
             case 4:
@@ -345,19 +316,14 @@ public class QuizActivity extends AppCompatActivity {
                     textViewScore.setText("Score: " + String.valueOf(score));
 
                     correctDialog.CorrectDialog(score, this);
-
-
-
                 } else {
                     changetoIncorrectColor(rbselected);
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
                     final String correctAnswer = (String)rb4.getText();
                     wrongDialog.WrongDialog(correctAnswer, this);
-
                 }
                 break;
-
         }
 
         if(questionCounter  == questionTotalCount ){
@@ -387,20 +353,20 @@ public class QuizActivity extends AppCompatActivity {
      }.start();
     }
 
+    //Countdown timer updaten en quiz stoppen als de tijd om is.
     private void updateCountDownText() {
 
         int minutes = (int) (timeLeftinMillis/1000) / 60;
         int seconds = (int) (timeLeftinMillis/1000) %60;
+
         String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         textViewCountDownTimer.setText(timeFormatted);
 
         if(timeLeftinMillis <10000){
             textViewCountDownTimer.setTextColor(Color.RED);
-
         }else{
             textViewCountDownTimer.setTextColor(textColorofButtons);
         }
-
         if(timeLeftinMillis == 0){
             Toast.makeText(this, "Time is up!", Toast.LENGTH_SHORT).show();
             handler.postDelayed(new Runnable() {
@@ -411,15 +377,16 @@ public class QuizActivity extends AppCompatActivity {
             }, 2000);
 
         }
-
     }
+
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i("DATATA", "onStop() in QuizActivity");
+        Log.i("onStop called", "onStop() in QuizActivity");
         finish();
     }
 
+    // Methode die de resultaatdata doorstuurt naar de ResultActivity
     private void resultData(){
         Intent resultOfQuiz = new Intent(QuizActivity.this, ResultActivity.class);
         resultOfQuiz.putExtra("UserScore", score);
@@ -429,11 +396,11 @@ public class QuizActivity extends AppCompatActivity {
         startActivity(resultOfQuiz);
     }
 
+    // Methode om een backpress af te handelen. Zodat de quiz niet direct gestopt is.
     @Override
     public void onBackPressed() {
         if(backPressedTime + 2000 > System.currentTimeMillis()){
-
-            Intent intent = new Intent(QuizActivity.this, PlayActivity.class);
+            Intent intent = new Intent(QuizActivity.this, MainActivity.class);
             startActivity(intent);
         }else{
             Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();

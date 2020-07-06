@@ -6,20 +6,19 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
+/*
+Tutorial van Jeroen van de laatste week over Notificaties.
+ */
+
+
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
-    @Override
-    public void onNewToken(String token) {
-        Log.d("refresh", token);
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -29,7 +28,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, PlayActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("leerdoel", messageBody);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
