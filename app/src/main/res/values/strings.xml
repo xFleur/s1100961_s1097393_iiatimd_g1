@@ -1,11 +1,19 @@
 <resources>
     <string name="app_name">Rijles App</string>
-    <string name="hello">Database Branch</string>
+    <string name="hello">MAIN</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
+    <string name="next">next</string>
+    <string name="check">check</string>
+    <string name="login">login</string>
+    <string name="pwd">Next</string>
+    <string name="naam">naam</string>
+    <string name="welkom">welkom</string>
+    <string name="login_go">login_go</string>
+    <string name="auth">Auth screen!</string>
+
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>

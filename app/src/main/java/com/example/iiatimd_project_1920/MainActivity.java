@@ -2,30 +2,53 @@ package com.example.iiatimd_project_1920;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Button;
+import android.os.Handler;
 
-import android.view.View;
+import com.example.iiatimd_project_1920.Fragments.SignInFragment;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button toLoginCheckScreen = findViewById(R.id.btnLoginGo);
-        toLoginCheckScreen.setOnClickListener(this);
+        //pauze 1,5sec
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                isFirstTime();
+            }
+        },1500);
+
     }
 
+    private void isFirstTime(){
+        SharedPreferences preferences =getApplication().getSharedPreferences("onBoard", Context.MODE_PRIVATE);
+        boolean isFirstTime = preferences.getBoolean("isFirstTime",true);
 
-    @Override
-    public void onClick(View v) {
-        Intent toLoginCheckScreenIntent = new Intent(this, LoginActivity.class);
-        startActivity(toLoginCheckScreenIntent);
+        if(isFirstTime){
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("isFirstTime",false);
+            editor.apply();
 
-
+            //start Onboard
+            startActivity(new Intent(MainActivity.this, AuthActivity.class));
+            finish();
+        }else {
+            //start auth activity
+            startActivity(new Intent(MainActivity.this,AuthActivity.class));
+            finish();
+        }
     }
 }
+
+
+
