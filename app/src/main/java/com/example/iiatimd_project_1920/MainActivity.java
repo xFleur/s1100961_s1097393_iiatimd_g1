@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Button buttonPlay = findViewById(R.id.bt_play);
+
+        //Transitie toegevoegd voor Intent
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
-
     }
 
     //onBackPressed afhandeling bij afsluiten

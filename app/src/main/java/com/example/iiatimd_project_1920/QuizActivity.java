@@ -78,14 +78,10 @@ public class QuizActivity extends AppCompatActivity {
         questionViewModel.getmAllQuestions().observe(this, new Observer<List<Questions>>() {
             @Override
             public void onChanged(@Nullable List<Questions> questions) {
-                Toast.makeText(QuizActivity.this, "Get IT :)", Toast.LENGTH_SHORT).show();
-
                 fetchContent(questions);
-
             }
         });
         Log.i("DATATA","onCreate() in QuizActivity");
-
     }
 
     //De UI instellen voor de verschillende inputs.
@@ -402,8 +398,9 @@ public class QuizActivity extends AppCompatActivity {
         if(backPressedTime + 2000 > System.currentTimeMillis()){
             Intent intent = new Intent(QuizActivity.this, MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }else{
-            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "PRESS AGAIN TO EXIT`", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
     }

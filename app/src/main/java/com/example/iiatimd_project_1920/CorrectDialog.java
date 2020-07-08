@@ -13,9 +13,7 @@ public class CorrectDialog {
 
     private Context mContext;
     private Dialog correctDialog;
-
     private QuizActivity mquizActivity;
-
     public CorrectDialog(Context mContext) {
         this.mContext = mContext;
     }
@@ -23,13 +21,10 @@ public class CorrectDialog {
     public void CorrectDialog(int score, QuizActivity quizActivity){
 
         mquizActivity = quizActivity;
-
         correctDialog = new Dialog(mContext);
-
         correctDialog.setContentView(R.layout.correct_dialog);
 
         final Button btcorrectDialog = (Button) correctDialog.findViewById(R.id.bt_correctDialog);
-
         Score(score);
 
         btcorrectDialog.setOnClickListener(new View.OnClickListener() {
@@ -39,12 +34,9 @@ public class CorrectDialog {
                 mquizActivity.setQuestionView();
             }
         });
-
         correctDialog.show();
         correctDialog.setCancelable(false);
         correctDialog.setCanceledOnTouchOutside(false);
-
-
     }
 
     private void Score(int score){

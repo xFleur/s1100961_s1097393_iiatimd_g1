@@ -3,13 +3,21 @@ package com.example.iiatimd_project_1920;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Cache;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import static java.lang.Thread.sleep;
 
@@ -20,7 +28,6 @@ public class SplashActivity extends AppCompatActivity {
     ImageView  imageViewSplashLogo;
     TextView textViewGoQuiz;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +35,8 @@ public class SplashActivity extends AppCompatActivity {
 
         imageViewSplashLogo = findViewById(R.id.splash_imgView);
         textViewGoQuiz = findViewById(R.id.splash_logo_text);
+
+        Picasso.get().load("https://www.theorieexamen.nl/cdn/b2/j1.png").into(imageViewSplashLogo);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.transitions);
         imageViewSplashLogo.setAnimation(animation);
