@@ -1,6 +1,7 @@
 package com.example.iiatimd_project_1920.Fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -24,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.iiatimd_project_1920.MainActivity;
 import com.example.iiatimd_project_1920.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -157,7 +159,7 @@ public class SignInFragment extends Fragment {
         dialog.setMessage("Logging in");
         dialog.show();
 
-        StringRequest request = new StringRequest(Request.Method.POST, "127.0.0.1:8000/api/login", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, "https://mmherokuapp.herokuapp.com/api/login", new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.e("HttpClient", "success! response: " + response.toString());
@@ -173,6 +175,8 @@ public class SignInFragment extends Fragment {
                                 editor.putString("lastname",user.getString("lastname"));
                                 editor.apply();
                                 //if success
+                                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
                                 Toast.makeText(getContext(),"Login Success",Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
