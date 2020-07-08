@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.iiatimd_project_1920">
-    <uses-permission
-        android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:allowBackup="true"
@@ -13,13 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AuthActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".QuizActivity" />
+        <service android:name=".MyFirebaseMessagingService"
+                 android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
 
+    </application>
 </manifest>

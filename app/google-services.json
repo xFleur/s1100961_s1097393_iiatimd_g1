@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "836505861558",
+    "firebase_url": "https://iiatimd-markmelissa.firebaseio.com",
+    "project_id": "iiatimd-markmelissa",
+    "storage_bucket": "iiatimd-markmelissa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836505861558:android:fc402d4bfa84790cb05517",
+        "android_client_info": {
+          "package_name": "com.example.iiatimd_project_1920"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836505861558-i4037cm8o1pscivd1lch4k7no54rhsk7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrl980aiHQiZpIaSFPPhSTbftMmvYqtRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836505861558-i4037cm8o1pscivd1lch4k7no54rhsk7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
