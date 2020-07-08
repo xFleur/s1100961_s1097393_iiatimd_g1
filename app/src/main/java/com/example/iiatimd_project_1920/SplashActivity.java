@@ -3,10 +3,7 @@ package com.example.iiatimd_project_1920;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -14,10 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Cache;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 import static java.lang.Thread.sleep;
 
@@ -46,7 +40,6 @@ public class SplashActivity extends AppCompatActivity {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-
 
                 try {
                     sleep(3000);
@@ -80,7 +73,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void GoToPlayActivity() {
-        startActivityForResult(new Intent(SplashActivity.this, MainActivity.class), EXIT_CODE);
+        startActivityForResult(new Intent(SplashActivity.this, AuthActivity.class), EXIT_CODE);
     }
 
     @Override

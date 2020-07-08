@@ -361,7 +361,7 @@ public class QuizActivity extends AppCompatActivity {
         if(timeLeftinMillis <10000){
             textViewCountDownTimer.setTextColor(Color.RED);
         }else{
-            textViewCountDownTimer.setTextColor(textColorofButtons);
+            textViewCountDownTimer.setTextColor(Color.BLACK);
         }
         if(timeLeftinMillis == 0){
             Toast.makeText(this, "Time is up!", Toast.LENGTH_SHORT).show();
