@@ -127,25 +127,25 @@
                     android:layout_gravity="center"
                     android:weightSum="2">
 
-                    <Button
-                        android:id="@+id/bt_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        tools:text="Profile"
-                        android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textSize="20sp"
-                        android:layout_margin="10dp"
-                        android:textColor="@color/text_Color_White"
-                        app:backgroundTint="@color/colorPrimary"
-                        app:icon="@drawable/ic_baseline_person_24"
-                        app:iconGravity="textStart"
-                        app:iconPadding="10dp"
-                        app:iconTint="@color/text_Color_White"
-                        android:padding="20dp"
-                        android:layout_gravity="center" />
+<!--                    <Button-->
+<!--                        android:id="@+id/bt_profile"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        tools:text="Profile"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:textColor="@color/text_Color_White"-->
+<!--                        app:backgroundTint="@color/colorPrimary"-->
+<!--                        app:icon="@drawable/ic_baseline_person_24"-->
+<!--                        app:iconGravity="textStart"-->
+<!--                        app:iconPadding="10dp"-->
+<!--                        app:iconTint="@color/text_Color_White"-->
+<!--                        android:padding="20dp"-->
+<!--                        android:layout_gravity="center" />-->
 
                     <Button
                         android:id="@+id/bt_logout"
@@ -163,8 +163,8 @@
                         app:iconGravity="textStart"
                         app:iconPadding="10dp"
                         app:iconTint="@color/text_Color_White"
-                        android:background="@drawable/confirm_button_bg"
-                        android:padding="20dp"
+                        android:background="@drawable/logout_button_bg"
+                        android:padding="8dp"
                         android:layout_gravity="center" />
                 </LinearLayout>
                 </LinearLayout>

@@ -43,6 +43,9 @@ public class SignInFragment extends Fragment {
     private TextView txtSignUp;
     private Button btnSignIn;
     private ProgressDialog dialog;
+    //private String txtNameFromEmail;
+    private String txtFromEmail;
+    private String name;
     //
 
     public SignInFragment() {
@@ -176,6 +179,7 @@ public class SignInFragment extends Fragment {
                                 editor.apply();
                                 //if success
                                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+
                                 startActivity(intent);
                                 Toast.makeText(getContext(),"Login Success",Toast.LENGTH_SHORT).show();
                             }

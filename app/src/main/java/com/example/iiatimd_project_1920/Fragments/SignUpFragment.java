@@ -204,8 +204,13 @@ public class SignUpFragment extends Fragment {
                                 //if success
 //                                startActivity(new Intent(((AuthActivity.getApplicationContext()),MainActivity.class));
 //                                ((AuthActivity))getContext()).finish();
+//                                String name = user.getString("name").trim();
+//                                String email = user.getString("email").trim();
                                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+//                                intent.putExtra("name",name);
+//                                intent.putExtra("email",email);
                                 startActivity(intent);
+                                //Toast.makeText(getContext(),"Register Success .\nYour name : "+name+"\nYour email : "+email,Toast.LENGTH_SHORT).show();
                                 Toast.makeText(getContext(),"Register Success",Toast.LENGTH_SHORT).show();
 
                             }
@@ -229,6 +234,7 @@ public class SignUpFragment extends Fragment {
                 map.put("name",txtName.getText().toString());
                 map.put("email",txtEmail.getText().toString().trim());
                 map.put("password",txtPassword.getText().toString());
+
                 return map;
             }
 

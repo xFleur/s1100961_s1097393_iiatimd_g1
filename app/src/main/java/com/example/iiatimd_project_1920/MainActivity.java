@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private String firstName = "Jeroen";
+    private String firstName = "Jeroen!";
     private static final String TAG = "PlayActivity";
     private long backPressedTime;
 
@@ -82,8 +82,21 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+        });
+
+        //Transitie toegevoegd voor Intent Uitloggen
+        Button buttonProgess = findViewById(R.id.bt_progress);
+        buttonProgess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 

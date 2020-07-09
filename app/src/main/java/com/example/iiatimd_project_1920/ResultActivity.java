@@ -59,19 +59,39 @@ public class ResultActivity extends AppCompatActivity {
 
         //Ophalen van data vanuit QuizActivity
         Intent intent = getIntent();
-        int score = intent.getIntExtra("UserScore", 0);
-        int totalQuestion = intent.getIntExtra("TotalQuizQuestions", 0);
-        int correctQuestions = intent.getIntExtra("CorrectQuestions", 0);
-        int wrongQuestions = intent.getIntExtra("WrongQuestions", 0);
+        if(intent.hasExtra("UserScore")) {
+            int score = intent.getIntExtra("UserScore", 0);
+            int totalQuestion = intent.getIntExtra("TotalQuizQuestions", 0);
+            int correctQuestions = intent.getIntExtra("CorrectQuestions", 0);
+            int wrongQuestions = intent.getIntExtra("WrongQuestions", 0);
 
-        txtTotalQuizQuestion.setText("Total Questions: " + String.valueOf(totalQuestion));
-        txtCorrectQuestion.setText("Correct Questions: " + String.valueOf(correctQuestions));
-        txtWrongQuestion.setText("Wrong Questions: " + String.valueOf(wrongQuestions));
+            txtTotalQuizQuestion.setText("Total Questions: " + String.valueOf(totalQuestion));
+            txtCorrectQuestion.setText("Correct Questions: " + String.valueOf(correctQuestions));
+            txtWrongQuestion.setText("Wrong Questions: " + String.valueOf(wrongQuestions));
 
-        //Is score hoger dan highScore? Update dan de nieuwe score
-        if (score > highScore){
-            updateScore(score);
+            //Is score hoger dan highScore? Update dan de nieuwe score
+            if (score > highScore){
+                updateScore(score);
+            }
         }
+        else{
+            txtTotalQuizQuestion.setText("Je bent goed bezig!");
+            txtCorrectQuestion.setText("");
+            txtWrongQuestion.setText("");
+        }
+//        int score = intent.getIntExtra("UserScore", 0);
+//        int totalQuestion = intent.getIntExtra("TotalQuizQuestions", 0);
+//        int correctQuestions = intent.getIntExtra("CorrectQuestions", 0);
+//        int wrongQuestions = intent.getIntExtra("WrongQuestions", 0);
+//
+//        txtTotalQuizQuestion.setText("Total Questions: " + String.valueOf(totalQuestion));
+//        txtCorrectQuestion.setText("Correct Questions: " + String.valueOf(correctQuestions));
+//        txtWrongQuestion.setText("Wrong Questions: " + String.valueOf(wrongQuestions));
+//
+//        //Is score hoger dan highScore? Update dan de nieuwe score
+//        if (score > highScore){
+//            updateScore(score);
+//        }
     }
 
     //Score updaten
