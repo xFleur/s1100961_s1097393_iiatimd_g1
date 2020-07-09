@@ -32,14 +32,13 @@ import com.example.iiatimd_project_1920.Fragments.SignInFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity  {
 
-    private String firstName = "Mark";
+    private String firstName = "Jeroen";
     private static final String TAG = "PlayActivity";
     private long backPressedTime;
 

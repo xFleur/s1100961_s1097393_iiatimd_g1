@@ -43,8 +43,8 @@ import java.util.Map;
 
 public class SignUpFragment extends Fragment {
     private View view;
-    private TextInputLayout layoutEmail,layoutPassword,layoutConfirm;
-    private TextInputEditText txtEmail,txtPassword,txtConfirm;
+    private TextInputLayout layoutName, layoutEmail,layoutPassword,layoutConfirm;
+    private TextInputEditText txtName, txtEmail,txtPassword,txtConfirm;
     private TextView txtSignIn;
     private Button btnSignUp;
     private ProgressDialog dialog;
@@ -63,11 +63,13 @@ public class SignUpFragment extends Fragment {
 
     private void init(){
         layoutPassword = view.findViewById(R.id.txtLayoutPasswordSignUp);
+        layoutName = view.findViewById(R.id.txtLayoutNameSignUp);
         layoutEmail = view.findViewById(R.id.txtLayoutEmailSignUp);
         layoutConfirm = view.findViewById(R.id.txtLayoutConfirmSignUp);
         txtPassword = view.findViewById(R.id.txtPasswordSignUp);
         txtConfirm = view.findViewById(R.id.txtConfirmSignUp);
         txtSignIn = view.findViewById(R.id.txtSignIn);
+        txtName = view.findViewById(R.id.txtNameSignUp);
         txtEmail = view.findViewById(R.id.txtEmailSignUp);
         btnSignUp = view.findViewById(R.id.btnSignUp);
         dialog = new ProgressDialog(getContext());
@@ -224,6 +226,7 @@ public class SignUpFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<String, String>();
+                map.put("name",txtName.getText().toString());
                 map.put("email",txtEmail.getText().toString().trim());
                 map.put("password",txtPassword.getText().toString());
                 return map;
