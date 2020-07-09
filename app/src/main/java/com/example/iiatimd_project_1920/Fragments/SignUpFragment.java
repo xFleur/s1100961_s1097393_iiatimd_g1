@@ -1,6 +1,7 @@
 package com.example.iiatimd_project_1920.Fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,11 +23,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.iiatimd_project_1920.Constant;
+import com.example.iiatimd_project_1920.AuthActivity;
+import com.example.iiatimd_project_1920.MainActivity;
 import com.example.iiatimd_project_1920.R;
+import com.example.iiatimd_project_1920.SplashActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -36,10 +40,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class SignUpFragment extends Fragment {
     private View view;
-    private TextInputLayout layoutEmail,layoutPassword,layoutConfirm;
-    private TextInputEditText txtEmail,txtPassword,txtConfirm;
+    private TextInputLayout layoutName, layoutEmail,layoutPassword,layoutConfirm;
+    private TextInputEditText txtName, txtEmail,txtPassword,txtConfirm;
     private TextView txtSignIn;
     private Button btnSignUp;
     private ProgressDialog dialog;
@@ -58,11 +63,13 @@ public class SignUpFragment extends Fragment {
 
     private void init(){
         layoutPassword = view.findViewById(R.id.txtLayoutPasswordSignUp);
+        layoutName = view.findViewById(R.id.txtLayoutNameSignUp);
         layoutEmail = view.findViewById(R.id.txtLayoutEmailSignUp);
         layoutConfirm = view.findViewById(R.id.txtLayoutConfirmSignUp);
         txtPassword = view.findViewById(R.id.txtPasswordSignUp);
         txtConfirm = view.findViewById(R.id.txtConfirmSignUp);
         txtSignIn = view.findViewById(R.id.txtSignIn);
+        txtName = view.findViewById(R.id.txtNameSignUp);
         txtEmail = view.findViewById(R.id.txtEmailSignUp);
         btnSignUp = view.findViewById(R.id.btnSignUp);
         dialog = new ProgressDialog(getContext());
@@ -179,7 +186,7 @@ public class SignUpFragment extends Fragment {
     private void register() {
         dialog.setMessage("Registering");
         dialog.show();
-        StringRequest request = new StringRequest(Request.Method.POST, "10.0.2.2:8000/api/register", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, "https://mmherokuapp.herokuapp.com/api/register", new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.e("HttpClient", "success! response: " + response.toString());
@@ -195,7 +202,17 @@ public class SignUpFragment extends Fragment {
                                 editor.putString("lastname",user.getString("lastname"));
                                 editor.apply();
                                 //if success
+//                                startActivity(new Intent(((AuthActivity.getApplicationContext()),MainActivity.class));
+//                                ((AuthActivity))getContext()).finish();
+//                                String name = user.getString("name").trim();
+//                                String email = user.getString("email").trim();
+                                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+//                                intent.putExtra("name",name);
+//                                intent.putExtra("email",email);
+                                startActivity(intent);
+                                //Toast.makeText(getContext(),"Register Success .\nYour name : "+name+"\nYour email : "+email,Toast.LENGTH_SHORT).show();
                                 Toast.makeText(getContext(),"Register Success",Toast.LENGTH_SHORT).show();
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -214,8 +231,10 @@ public class SignUpFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<String, String>();
+                map.put("name",txtName.getText().toString());
                 map.put("email",txtEmail.getText().toString().trim());
                 map.put("password",txtPassword.getText().toString());
+
                 return map;
             }
 
@@ -225,13 +244,17 @@ public class SignUpFragment extends Fragment {
         queue.add(request);
     }
 
-//    private void sendWorkPostRequest() {
-//        dialog.setMessage("Registering");
+
+    // Post Request For JSONObject
+//    public void postData() {
+//
+//        dialog.setMessage("Please Wait...");
+//        dialog.setCanceledOnTouchOutside(false);
 //        dialog.show();
 //
+//        JSONObject object = new JSONObject();
 //        try {
-//            String URL = "10.0.2.2:8000/api/register";
-//            JSONObject object = new JSONObject();
+//            //input your API parameters
 //            if(object.getBoolean("success")){
 //                JSONObject user = object.getJSONObject("user");
 //                //make shared pref user
@@ -244,37 +267,43 @@ public class SignUpFragment extends Fragment {
 //                //if success
 //                Toast.makeText(getContext(),"Register Success",Toast.LENGTH_SHORT).show();
 //            }
-//
-//            JsonObjectRequest jsonOblect = new JsonObjectRequest(Request.Method.POST, URL, object, new Response.Listener<JSONObject>() {
-//                @Override
-//                public void onResponse(JSONObject response) {
-//
-//
-//                }
-//            }, new Response.ErrorListener() {
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//
-//
-//
-//                }
-//            }) {
-//                @Override
-//                public Map<String, String> getHeaders() throws AuthFailureError {
-//                    final Map<String, String> map = new HashMap<>();
-//                    map.put("email",txtEmail.getText().toString().trim());
-//                    map.put("password",txtPassword.getText().toString());
-//                    return map;
-//                }
-//            };
-//            //VolleyApplication.getInstance().addToRequestQueue(jsonOblect);
-//
-//        } catch (JSONException e)
+//        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-//        // Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_LONG).show();
+//        // Enter the correct url for your api service site
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "10.0.2.2.:8000/api/register", object,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+////                        Toast.makeText(Login_screen.this,"String Response : "+ response.toString(),Toast.LENGTH_LONG).show();
+//                        try {
+//                            Log.d("JSON", String.valueOf(response));
+//                            dialog.dismiss();
+//                            String Error = response.getString("httpStatus");
+//                            if (Error.equals("")||Error.equals(null)){
 //
+//                            }else if(Error.equals("OK")){
+//                                JSONObject body = response.getJSONObject("body");
 //
-
-
+//                            }else {
+//
+//                            }
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            dialog.dismiss();
+//                        }
+////                        resultTextView.setText("String Response : "+ response.toString());
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                dialog.dismiss();
+//                VolleyLog.d("Error", "Error: " + error.getMessage());
+//
+//            }
+//        });
+//        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+//        requestQueue.add(jsonObjectRequest);
+//    }
 }

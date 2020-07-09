@@ -132,7 +132,7 @@ public class QuizActivity extends AppCompatActivity {
         rb4.setTextColor(Color.WHITE);
 
         questionTotalCount = quesList.size();
-        Collections.shuffle(quesList);
+       //Collections.shuffle(quesList);
 
         // UI resetten als er een nieuwe quizvraag is.
         if (questionCounter < questionTotalCount - 1) {
@@ -274,9 +274,11 @@ public class QuizActivity extends AppCompatActivity {
                     correctDialog.CorrectDialog(score, this);
                 } else {
                     changetoIncorrectColor(rbselected);
+
+                    wrongAns++;
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
-                    final String correctAnswer = (String)rb2.getText();
+                    final String correctAnswer = (String)rb1.getText();
                     wrongDialog.WrongDialog(correctAnswer, this);
                 }
                 break;
@@ -294,9 +296,11 @@ public class QuizActivity extends AppCompatActivity {
                     correctDialog.CorrectDialog(score, this);
                 } else {
                     changetoIncorrectColor(rbselected);
+
+                    wrongAns++;
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
-                    final String correctAnswer = (String)rb3.getText();
+                    final String correctAnswer = (String)rb1.getText();
                     wrongDialog.WrongDialog(correctAnswer, this);
                 }
                 break;
@@ -314,9 +318,11 @@ public class QuizActivity extends AppCompatActivity {
                     correctDialog.CorrectDialog(score, this);
                 } else {
                     changetoIncorrectColor(rbselected);
+
+                    wrongAns++;
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
-                    final String correctAnswer = (String)rb4.getText();
+                    final String correctAnswer = (String)rb1.getText();
                     wrongDialog.WrongDialog(correctAnswer, this);
                 }
                 break;
