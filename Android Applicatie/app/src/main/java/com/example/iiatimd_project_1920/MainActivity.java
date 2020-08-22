@@ -88,12 +88,23 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
-        //Transitie toegevoegd voor Intent Uitloggen
+        //Transitie toegevoegd voor Intent Progess
         Button buttonProgess = findViewById(R.id.bt_progress);
         buttonProgess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+        //Transitie toegevoegd voor Intent Highscores
+        Button buttonHighscores = findViewById(R.id.bt_highscores);
+        buttonHighscores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HighScoreActivity.class);
 
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

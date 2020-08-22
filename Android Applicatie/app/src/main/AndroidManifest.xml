@@ -27,7 +27,8 @@
         </activity>
         <activity android:name=".ResultActivity" />
         <activity android:name=".QuizActivity" />
-
+        <activity android:name=".OnBoardActivity" />
+        <activity android:name=".HighScoreActivity" />
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

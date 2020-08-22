@@ -8,12 +8,17 @@
     <color name="colorLightGrey">#999999</color>
     <color name="colorRed">#F44336</color>
 
-    <color name="colorPrimaryDark">#2b2b7f</color>
-    <color name="colorPrimary">#5344a3</color>
-    <color name="colorAccent">#95a344</color>
-    <color name="bg_Color">#fff</color>
-    <color name="text_Color">#1e1e1e</color>
-    <color name="text_Color_White">#fff</color>
+    <color name="colorPrimaryDark">#17252a</color>
+    <color name="colorPrimary">#3aafa9</color>
+<!--  oude paarse app kleuren: colorPrimary #5344a3  -->
+    <!--  oude paarse app kleuren: colorPrimaryDark #2b2b7f  -->
+    <!--  oude paarse app kleuren: colorAccent #95a344  -->
+    <!--  oude paarse app kleuren: bg_Color #fff  -->
+    <!--  oude paarse app kleuren: text_Color #1e1e1e  -->
+    <color name="colorAccent">#2b7a78</color>
+    <color name="bg_Color">#def2f1</color>
+    <color name="text_Color">#17252a</color>
+    <color name="text_Color_White">#feffff</color>
     <color name="colorCorrect">#7CB342</color>
     <color name="colorWrong">#E53935</color>
 

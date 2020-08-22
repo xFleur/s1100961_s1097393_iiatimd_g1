@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -13,6 +13,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
