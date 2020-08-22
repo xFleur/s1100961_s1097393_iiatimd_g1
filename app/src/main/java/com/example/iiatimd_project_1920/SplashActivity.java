@@ -3,7 +3,9 @@ package com.example.iiatimd_project_1920;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -74,7 +76,31 @@ public class SplashActivity extends AppCompatActivity {
 
     private void GoToPlayActivity() {
         //startActivityForResult(new Intent(SplashActivity.this, MainActivity.class), EXIT_CODE);
-        startActivityForResult(new Intent(SplashActivity.this, AuthActivity.class), EXIT_CODE);
+        //startActivityForResult(new Intent(SplashActivity.this, AuthActivity.class), EXIT_CODE);
+        //startActivityForResult(new Intent(SplashActivity.this, OnBoardActivity.class), EXIT_CODE);
+
+        //for checking if the app is running for the very first time
+        //we need to save a value to shared preferences
+        SharedPreferences preferences = getApplication().getSharedPreferences("onBoard", Context.MODE_PRIVATE);
+        boolean isFirstTime = preferences.getBoolean("isFirstTime",true);
+        //default value true
+        if (isFirstTime){
+            // if its true then its first time and we will change it false
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("isFirstTime",false);
+            editor.apply();
+
+            // start Onboard activity
+            startActivity(new Intent(SplashActivity.this,OnBoardActivity.class));
+            finish();
+        }
+        else{
+            //start Auth Activity
+            startActivity(new Intent(SplashActivity.this,OnBoardActivity.class));
+            finish();
+        }
+
+
 
 
     }

@@ -123,7 +123,7 @@
                     app:iconTint="@color/text_Color_White" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_progress2"
+                    android:id="@+id/bt_highscores"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Highscores"
