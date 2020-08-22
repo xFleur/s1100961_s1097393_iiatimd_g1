@@ -57,6 +57,9 @@ public class ResultActivity extends AppCompatActivity {
         //Highscore ophalen
         loadHighScore();
 
+        //resetScore
+        //updateScore(0);
+
         //Ophalen van data vanuit QuizActivity
         Intent intent = getIntent();
         if(intent.hasExtra("UserScore")) {

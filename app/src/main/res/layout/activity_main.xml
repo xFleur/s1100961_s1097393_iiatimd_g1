@@ -5,32 +5,34 @@
 
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/appbar"-->
 
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="match_parent">-->
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:toolbarId="@+id/toolbar"
+<!--        <com.google.android.material.appbar.CollapsingToolbarLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:toolbarId="@+id/toolbar"-->
+<!--            app:contentScrim="?attr/colorPrimary">-->
 
-            app:contentScrim="?attr/colorPrimary">
 
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_width="match_parent"></androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+<!--            <androidx.appcompat.widget.Toolbar-->
+<!--                android:id="@+id/toolbar"-->
+<!--                android:layout_height="?attr/actionBarSize"-->
+<!--                android:layout_width="match_parent"></androidx.appcompat.widget.Toolbar>-->
+<!--       -->
+<!--        </com.google.android.material.appbar.CollapsingToolbarLayout>-->
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
 
 
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -40,9 +42,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/bg_Color"
+            android:background="@color/text_Color_White"
             tools:context=".MainActivity">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,7 +61,7 @@
                     android:text="Goedemorgen"
                     android:textSize="30dp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_Color"
+                    android:textColor="@color/colorPrimaryDark"
 
                     />
                 <TextView
@@ -99,25 +102,44 @@
                         android:background="@drawable/confirm_button_bg"
                         android:padding="30dp"
                         android:layout_gravity="center" />
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/bt_progress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Progress"
-                        android:textStyle="bold"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textSize="25sp"
-                        android:layout_margin="10dp"
-                        app:icon="@drawable/ic_progress_24"
-                        app:iconGravity="textStart"
-                        app:iconPadding="10dp"
-                        app:iconTint="@color/text_Color_White"
 
-                        android:textColor="@color/text_Color_White"
-                        android:background="@drawable/confirm_button_bg"
-                        android:padding="30dp"
-                        android:layout_gravity="center" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_progress"
+                    android:layout_width="389dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/confirm_button_bg"
+                    android:padding="30dp"
+                    android:text="Progress"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_Color_White"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:icon="@drawable/ic_progress_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="10dp"
+                    app:iconTint="@color/text_Color_White" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_progress2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Highscores"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textSize="25sp"
+                    android:layout_margin="10dp"
+                    app:icon="@drawable/ic_progress_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="10dp"
+                    app:iconTint="@color/text_Color_White"
+                    android:textColor="@color/text_Color_White"
+                    android:background="@drawable/confirm_button_bg"
+                    android:padding="30dp"
+                    android:layout_gravity="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rijles App</string>
+    <string name="app_name">Theorie App</string>
 
     <string name="title_activity_settings">SettingsActivity</string>
     <!-- Strings used for fragments for navigation -->
