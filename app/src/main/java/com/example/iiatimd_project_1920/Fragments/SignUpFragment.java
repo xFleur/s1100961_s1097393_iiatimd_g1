@@ -94,7 +94,7 @@ public class SignUpFragment extends Fragment {
 
 //        txtSignIn.setOnClickListener(v->{
 //            //verander fragments
-//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAuthContainer,new SignInFragment()).commit();
+//                tivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAuthContainer,new SignInFragment()).commit();
 //        });
 //
 //        btnSignUp.setOnClickListener(v->{

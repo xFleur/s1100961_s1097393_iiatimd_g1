@@ -1,5 +1,6 @@
 package com.example.iiatimd_project_1920;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -21,6 +22,7 @@ public class OnBoardActivity extends AppCompatActivity {
     private LinearLayout dotsLayout;
     private TextView[] dots;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class OnBoardActivity extends AppCompatActivity {
         addDots(0);
         viewPager.addOnPageChangeListener(listener); // create this listener
         viewPager.setAdapter(adapter);
+
 
 
 
