@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,14 +22,19 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.security.AccessController.getContext;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -96,7 +102,7 @@ public class ResultActivity extends AppCompatActivity {
 
         //Ophalen van data vanuit QuizActivity
         Intent intent = getIntent();
-        if(intent.hasExtra("UserScore")) {
+        if (intent.hasExtra("UserScore")) {
             int score = intent.getIntExtra("UserScore", 0);
             int totalQuestion = intent.getIntExtra("TotalQuizQuestions", 0);
             int correctQuestions = intent.getIntExtra("CorrectQuestions", 0);
@@ -107,11 +113,10 @@ public class ResultActivity extends AppCompatActivity {
             txtWrongQuestion.setText("Wrong Questions: " + String.valueOf(wrongQuestions));
 
             //Is score hoger dan highScore? Update dan de nieuwe score
-            if (score > highScore){
+            if (score > highScore) {
                 updateScore(score);
             }
-        }
-        else{
+        } else {
             txtTotalQuizQuestion.setText("Je bent goed bezig!");
             txtCorrectQuestion.setText("");
             txtWrongQuestion.setText("");
@@ -156,10 +161,10 @@ public class ResultActivity extends AppCompatActivity {
     //onBackPressed afhandeling
     @Override
     public void onBackPressed() {
-        if(backPressedTime + 2000 > System.currentTimeMillis()){
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
             Intent intent = new Intent(ResultActivity.this, QuizActivity.class);
             startActivity(intent);
-        }else{
+        } else {
             Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
@@ -175,13 +180,16 @@ public class ResultActivity extends AppCompatActivity {
         builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                String nummer = String.valueOf(highScore);
                 String name = String.valueOf(taskEditText.getText());
                 Log.d("Activity", "User input : " + name + highScore);
 
-                //GoLeaderboard();
+                GoLeaderboard(nummer,name);
+
+                //
 
 
-
+//
             }
         });
         builder.setNegativeButton("Cancel", null);
@@ -190,10 +198,38 @@ public class ResultActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    /////
+    private void GoLeaderboard(String score, String naam) {
 
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "https://mmherokuapp.herokuapp.com/api/save_user_score",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response on Success
+                        Log.d("Response", response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.getMessage());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("highscore", score.toString());
+                params.put("leadname", naam.toString());
+
+                return params;
+            }
+        };
+//        queue.add(postRequest);
+        VolleySingelton.getInstance(this).addToRequestQueue(postRequest);
+    }
 }
-
-
 
 
 
