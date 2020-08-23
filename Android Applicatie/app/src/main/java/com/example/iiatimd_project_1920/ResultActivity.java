@@ -2,20 +2,41 @@ package com.example.iiatimd_project_1920;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ResultActivity extends AppCompatActivity {
 
     TextView txtHighScore;
     TextView txtTotalQuizQuestion, txtCorrectQuestion, txtWrongQuestion;
-    Button btStartQuizAgain, btMainMenu;
+    Button btStartQuizAgain, btMainMenu, btHighScore;
     private long backPressedTime;
+    private ProgressDialog dialog;
 
     int highScore = 0;
 
@@ -37,6 +58,11 @@ public class ResultActivity extends AppCompatActivity {
         //Instellen buttons
         btStartQuizAgain = findViewById(R.id.bt_result_play_again);
         btMainMenu = findViewById(R.id.bt_result_main_menu);
+        btHighScore = findViewById(R.id.bt_result_main_menu_upload);
+
+        dialog = new ProgressDialog(getApplicationContext());
+        dialog.setCancelable(false);
+
 
         btMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +77,14 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ResultActivity.this, QuizActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        btHighScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddItemDialog(ResultActivity.this);
             }
         });
 
@@ -130,4 +164,40 @@ public class ResultActivity extends AppCompatActivity {
         }
         backPressedTime = System.currentTimeMillis();
     }
+
+
+    private void showAddItemDialog(Context c) {
+        final EditText taskEditText = new EditText(c);
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle("Highscore: " + String.valueOf(highScore) + " uploaden");
+        builder.setMessage("Onder welke naam wil je op het leaderboard staan?");
+        builder.setView(taskEditText);
+        builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String name = String.valueOf(taskEditText.getText());
+                Log.d("Activity", "User input : " + name + highScore);
+
+                //GoLeaderboard();
+
+
+
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        AlertDialog dialog = builder
+                .create();
+        dialog.show();
+    }
+
+
 }
+
+
+
+
+
+
+
+
+

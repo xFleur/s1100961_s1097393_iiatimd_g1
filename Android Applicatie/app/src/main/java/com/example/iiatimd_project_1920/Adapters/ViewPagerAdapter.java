@@ -22,22 +22,22 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     private int images[] ={
-            R.drawable.teacher,
+            R.drawable.car,
             R.drawable.text,
             R.drawable.ranking,
     };
 
     private String titles[] ={
-            "Learn",
-            "Create",
-            "Enjoy"
+            "Leer je autotheorie",
+            "Gemakkelijk oefenen in de app",
+            "Scores bijhouden"
     };
 
     private String descs[] ={
-            "lorem  ipsum dolor contraint spaces dolor ipsum loremters termainal lorem ispsum contanirnts.",
-            "lorem  ipsum dolor contraint spaces dolor ipsum loremters termainal lorem ispsum contanirnts.",
-            "lorem  ipsum dolor contraint spaces dolor ipsum loremters termainal lorem ispsum contanirnts."
-    };
+            "Leer je autotheorie nu via deze app overal en altijd wegens offline functie",
+            "Ontvang meldingen en tips over je leer proces",
+            "Upload jou score en bekijk die van anderen op het leaderboard"
+};
 
     @Override
     public int getCount() {

@@ -21,6 +21,7 @@
         android:padding="10dp"
         android:textStyle="bold"
         />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,6 +30,47 @@
         android:paddingStart="30dp"
         android:padding="20dp"
         android:background="@color/colorAccent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <Button
+                android:id="@+id/bt_result_main_menu"
+                android:textAllCaps="false"
+                android:textColor="@color/text_Color"
+                android:padding="10dp"
+                app:icon="@drawable/home"
+                app:iconSize="35dp"
+                app:iconGravity="textStart"
+                app:iconPadding="10dp"
+                app:iconTint="@color/text_Color_White"
+                android:layout_marginEnd="10dp"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/bt_result_play_again"
+                android:textAllCaps="false"
+                android:textColor="@color/text_Color"
+                android:padding="10dp"
+                android:textSize="20sp"
+                app:icon="@drawable/replay"
+                app:iconSize="35dp"
+                app:iconGravity="textStart"
+                app:iconPadding="10dp"
+                app:iconTint="@color/text_Color_White"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+
+
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/result_tv_HighScore"
@@ -74,35 +116,18 @@
             android:textStyle="bold"
             android:textAlignment="textStart"
             />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <Button
-                android:id="@+id/bt_result_play_again"
-                android:text="Play Again"
-                android:textAllCaps="false"
-                android:textColor="@color/text_Color"
-                android:padding="10dp"
-                android:textSize="20sp"
-                android:layout_marginEnd="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-            <Button
-                android:id="@+id/bt_result_main_menu"
-                android:text="Main Menu"
-                android:textAllCaps="false"
-                android:textColor="@color/text_Color"
-                android:padding="10dp"
-                android:layout_marginStart="10dp"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/bt_result_main_menu_upload"
+            android:text="Upload je Highscore"
+            android:textAllCaps="false"
+            android:textColor="@color/text_Color"
+            android:padding="10dp"
+
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
