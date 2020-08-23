@@ -92,11 +92,17 @@ public class SplashActivity extends AppCompatActivity {
 
             // start Onboard activity
             startActivity(new Intent(SplashActivity.this,OnBoardActivity.class));
+
+            //tijdelijk deze regel moet straks weg
+//            startActivity(new Intent(SplashActivity.this,HighScoreActivity.class));
             finish();
         }
         else{
             //start Auth Activity
             startActivity(new Intent(SplashActivity.this,OnBoardActivity.class));
+
+            //tijdelijk deze regel moet straks weg
+//            startActivity(new Intent(SplashActivity.this,HighScoreActivity.class));
             finish();
         }
 
