@@ -2,6 +2,8 @@ package com.example.iiatimd_project_1920;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Context;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity  {
     private long backPressedTime;
 
     //SharedPreferences preferences = getApplication().getSharedPreferences("onBoard", Context.MODE_PRIVATE);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
