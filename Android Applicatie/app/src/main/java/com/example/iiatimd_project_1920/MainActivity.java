@@ -40,7 +40,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private String firstName = "Jeroen";
+    private String firstName = "Jeroen!";
     private static final String TAG = "PlayActivity";
     private long backPressedTime;
 
