@@ -7,31 +7,24 @@
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart"
-        android:layout_width="273dp"
-        android:layout_height="443dp"
-        app:layout_constraintBottom_toTopOf="@+id/highscoreText"
+        android:layout_width="337dp"
+        android:layout_height="505dp"
+        app:layout_constraintBottom_toTopOf="@+id/parseButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/parseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Parse"
+        android:layout_marginBottom="56dp"
+        android:text="Ververs highscore"
+        app:icon="@drawable/ic_baseline_refresh_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/highscoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/parseButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

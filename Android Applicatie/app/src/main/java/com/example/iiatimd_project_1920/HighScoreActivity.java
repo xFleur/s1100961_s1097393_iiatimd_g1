@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,7 +62,7 @@ import static java.security.AccessController.getContext;
 
 public class HighScoreActivity extends AppCompatActivity{
 
-    private TextView highscoreTxt;
+    private long backPressedTime;
 
 
     @Override
@@ -69,8 +70,8 @@ public class HighScoreActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
-        highscoreTxt = findViewById(R.id.highscoreText);
         Button buttonParse = findViewById(R.id.parseButton);
+
 
         jsonCall();
 
@@ -90,6 +91,7 @@ public class HighScoreActivity extends AppCompatActivity{
                 Toast.makeText(HighScoreActivity.this, "We refreshen de tabel voor je", Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
     }
@@ -139,9 +141,13 @@ public class HighScoreActivity extends AppCompatActivity{
                     barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(nameList));
                     barChart.getXAxis().setGranularityEnabled(true);
                     BarData barData = new BarData(barDataSet);
+                    barChart.getDescription().setEnabled(false);
                     barChart.setData(barData);
                     barChart.invalidate();
                     barChart.notifyDataSetChanged();
+
+
+                    Toast.makeText(HighScoreActivity.this, "De highscore is opgehaald!", Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -161,6 +167,18 @@ public class HighScoreActivity extends AppCompatActivity{
         barChart.getXAxis().setGranularityEnabled(true);
         barChart.setVisibleXRangeMaximum(10);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            Intent intent = new Intent(HighScoreActivity.this, MainActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }else{
+            Toast.makeText(this, "PRESS AGAIN TO EXIT`", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 
 
