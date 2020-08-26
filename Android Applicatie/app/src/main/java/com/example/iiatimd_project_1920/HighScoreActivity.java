@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 import androidx.activity.OnBackPressedCallback;
@@ -24,23 +25,26 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.utils.EntryXComparator;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textfield.TextInputLayout;
 
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,10 +71,6 @@ public class HighScoreActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_highscore);
 
         Button buttonParse = findViewById(R.id.parseButton);
 
@@ -95,14 +95,13 @@ public class HighScoreActivity extends AppCompatActivity{
         });
 
 
-        dataview = findViewById(R.id.textView2);
 
 
     }
 
     public void jsonCall(){
         Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024);
-        Network network = new BasicNetwork(new HurlStack());
+        BasicNetwork network = new BasicNetwork(new HurlStack());
         ArrayList<String> nameList = new ArrayList<>();
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         BarChart barChart = findViewById(R.id.barchart);
@@ -186,7 +185,7 @@ public class HighScoreActivity extends AppCompatActivity{
 
     
     }
-    );
+
 
 
 }
