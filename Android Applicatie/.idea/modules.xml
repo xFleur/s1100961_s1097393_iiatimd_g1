@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android Applicatie-IIATIMD_project_1920.iml" filepath="$PROJECT_DIR$/.idea/modules/Android Applicatie-IIATIMD_project_1920.iml" group="IIATIMD_project_1920" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/IIATIMD_project_1920.iml" filepath="$PROJECT_DIR$/.idea/modules/IIATIMD_project_1920.iml" group="IIATIMD_project_1920" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/IIATIMD_project_1920-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/IIATIMD_project_1920-app.iml" group="IIATIMD_project_1920/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="IIATIMD_project_1920/app" />
     </modules>
   </component>
