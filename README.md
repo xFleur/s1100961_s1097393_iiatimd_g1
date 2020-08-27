@@ -1,4 +1,4 @@
-# IIATIMD_project_1920 van Mark en Melissa
+# IIATIMD_project_1920 van Mark en Melissa v 2
 
 
 We hebben deze To Go Auto Theorie leren app gemaakt. Omdat we beiden druk bezig zijn met autorijlessen en we zochten naar vorm van gamification van autotheorie die je gewoon in je broekzak hebt en zo altijd overal je autotheorie kunt oefenen.
