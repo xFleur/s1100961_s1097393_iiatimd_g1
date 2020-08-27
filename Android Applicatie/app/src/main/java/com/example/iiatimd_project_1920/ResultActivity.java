@@ -180,17 +180,22 @@ public class ResultActivity extends AppCompatActivity {
         builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String nummer = String.valueOf(highScore);
-                String name = String.valueOf(taskEditText.getText());
-                Log.d("Activity", "User input : " + name + highScore);
+                if(Datacon.checkInternetConnection(ResultActivity.this)){
+                    String nummer = String.valueOf(highScore);
+                    String name = String.valueOf(taskEditText.getText());
+                    Log.d("Activity", "User input : " + name + highScore);
 
-                GoLeaderboard(nummer,name);
-
-                //
-
-
-//
+                    GoLeaderboard(nummer,name);
+                }
+                else{
+                    Context context_new = getApplicationContext();
+                    CharSequence text = "Er is geen internet geconstateerd. Probeer te verbinden.";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context_new, text, duration);
+                    toast.show();
+                }
             }
+
         });
         builder.setNegativeButton("Cancel", null);
         AlertDialog dialog = builder
@@ -198,7 +203,7 @@ public class ResultActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    /////
+
     private void GoLeaderboard(String score, String naam) {
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, "https://mmherokuapp.herokuapp.com/api/save_user_score",

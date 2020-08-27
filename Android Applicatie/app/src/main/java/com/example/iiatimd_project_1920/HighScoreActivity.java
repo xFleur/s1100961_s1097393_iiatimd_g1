@@ -153,6 +153,7 @@ public class HighScoreActivity extends AppCompatActivity{
                     barChart.setData(barData);
                     barChart.invalidate();
                     barChart.notifyDataSetChanged();
+                    barChart.setVisibleXRangeMaximum(5);
 
 
                     Toast.makeText(HighScoreActivity.this, "De highscore is opgehaald!", Toast.LENGTH_SHORT).show();
@@ -172,8 +173,7 @@ public class HighScoreActivity extends AppCompatActivity{
         request.add(jsonObjectRequest);
 
 
-        barChart.getXAxis().setGranularityEnabled(true);
-        barChart.setVisibleXRangeMaximum(10);
+
 
     }
 
