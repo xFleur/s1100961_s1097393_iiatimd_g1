@@ -74,14 +74,24 @@ public class HighScoreActivity extends AppCompatActivity{
 
         Button buttonParse = findViewById(R.id.parseButton);
 
+        if(Datacon.checkInternetConnection(HighScoreActivity.this)){
+            jsonCall();
+            Toast.makeText(HighScoreActivity.this, "We refreshen de tabel voor je", Toast.LENGTH_SHORT).show();
+        } else{
+            Context context_new = getApplicationContext();
+            CharSequence text = "Er is geen internet geconstateerd. Probeer te verbinden.";
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context_new, text, duration);
+            toast.show();
+        }
 
-        jsonCall();
 
         buttonParse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(Datacon.checkInternetConnection(HighScoreActivity.this)){
                     jsonCall();
+                    Toast.makeText(HighScoreActivity.this, "We refreshen de tabel voor je", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Context context_new = getApplicationContext();
@@ -90,7 +100,6 @@ public class HighScoreActivity extends AppCompatActivity{
                     Toast toast = Toast.makeText(context_new, text, duration);
                     toast.show();
                 }
-                Toast.makeText(HighScoreActivity.this, "We refreshen de tabel voor je", Toast.LENGTH_SHORT).show();
             }
         });
 
