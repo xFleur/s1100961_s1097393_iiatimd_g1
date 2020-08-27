@@ -90,7 +90,17 @@ public class ResultActivity extends AppCompatActivity {
         btHighScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAddItemDialog(ResultActivity.this);
+                if(Datacon.checkInternetConnection(ResultActivity.this)){
+                    showAddItemDialog(ResultActivity.this);
+                }
+                else{
+                    Context context_new = getApplicationContext();
+                    CharSequence text = "Er is geen internet geconstateerd. Probeer te verbinden.";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context_new, text, duration);
+                    toast.show();
+                }
+
             }
         });
 
@@ -185,9 +195,6 @@ public class ResultActivity extends AppCompatActivity {
                 Log.d("Activity", "User input : " + name + highScore);
 
                 GoLeaderboard(nummer,name);
-
-                //
-
 
 //
             }
