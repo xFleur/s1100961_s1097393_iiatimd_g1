@@ -113,14 +113,17 @@ public class HighScoreActivity extends AppCompatActivity{
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    //Vraag alle posts op en stop ze in een JSONArray
                     JSONArray jsonArray = response.getJSONArray("posts");
                     Log.d("dit is de JSONArray", jsonArray.toString());
 
+                    //Maak een Lijst aan van de Array. Dit is nodig om het te kunnen sorteren.
                     List<JSONObject> jsonList = new ArrayList<JSONObject>();
                     for(int i = 0; i < jsonArray.length(); i++){
                         jsonList.add(jsonArray.getJSONObject(i));
                     }
 
+                    //Sorteer de ontvangen lijst op highscore in SortedBasedOnHighScore()
                     Collections.sort(jsonList, new SortedBasedOnHighScore());
                     Collections.reverse(jsonList);
 
@@ -130,6 +133,7 @@ public class HighScoreActivity extends AppCompatActivity{
 
                     Log.d("JSON", jsArray.toString());
 
+                    //Voor elke instantie in de JSONArray, loop deze door.
                     for(int i = 0; i < jsArray.length(); i++) {
                         JSONObject posts = jsArray.getJSONObject(i);
                         String name = posts.getString("leadname");
@@ -140,6 +144,7 @@ public class HighScoreActivity extends AppCompatActivity{
                         barEntries.add(new BarEntry(i, highscore));
                     }
 
+                    //Maak de barchart met de ontvangen data aan
                     BarDataSet barDataSet = new BarDataSet(barEntries, "All time highscore");
                     barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(nameList));
                     barChart.getXAxis().setGranularityEnabled(true);
